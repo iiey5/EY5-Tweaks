@@ -11,10 +11,10 @@ $form.StartPosition = "CenterScreen"
 $form.FormBorderStyle = "FixedDialog"
 $form.MaximizeBox = $false
 
-# Set background image
-$backgroundImage = [System.Drawing.Image]::FromFile("EY5.png")
-$form.BackgroundImage = $backgroundImage
-$form.BackgroundImageLayout = "Stretch"
+# Load the image from GitHub (raw content URL)
+$imgUrl = "https://raw.githubusercontent.com/iiey5/EY5-Tweaks/main/EY5.png"
+$stream = [System.Net.WebRequest]::Create($imgUrl).GetResponse().GetResponseStream()
+$backgroundImage = [System.Drawing.Image]::FromStream($stream)
 
 # Helper function to create button
 function New-Button($text, $x, $y, $action) {
